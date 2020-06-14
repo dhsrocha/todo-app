@@ -1,0 +1,227 @@
+{
+  "name": "template-js",
+  "version": "1.0.0",
+  "license": "ISC",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "test": "jest --coverage -F --json --outputFile=build/.jest.results.json",
+    "test:watch": "jest --coverage --watchAll=true -F --json --outputFile=build/.jest.results.json || true",
+    "type-check": "tsc",
+    "ui": "start-storybook",
+    "ui:build": "build-storybook -o build/storybook"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn test -o",
+      "pre-push": "yarn test"
+    }
+  },
+  "dependencies": {
+    "isomorphic-unfetch": "3.0.0",
+    "next": "latest",
+    "preact": "^10.4.4",
+    "preact-render-to-string": "^5.1.9",
+    "preact-ssr-prepass": "^1.0.1",
+    "styled-components": "^5.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "latest",
+    "@storybook/addon-a11y": "latest",
+    "@storybook/addon-actions": "latest",
+    "@storybook/addon-docs": "latest",
+    "@storybook/addon-essentials": "latest",
+    "@storybook/addon-jest": "latest",
+    "@storybook/addon-knobs": "latest",
+    "@storybook/addon-links": "latest",
+    "@storybook/addon-storysource": "latest",
+    "@storybook/preset-typescript": "latest",
+    "@storybook/react": "latest",
+    "@types/enzyme": "latest",
+    "@types/enzyme-adapter-react-16": "latest",
+    "@types/jest": "latest",
+    "@types/react": "latest",
+    "@types/react-axe": "latest",
+    "@types/react-dom": "latest",
+    "@types/react-test-renderer": "latest",
+    "@types/storybook__react": "latest",
+    "@types/styled-components": "latest",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "babel-loader": "latest",
+    "babel-plugin-react-require": "latest",
+    "enzyme": "latest",
+    "enzyme-adapter-react-16": "latest",
+    "enzyme-to-json": "latest",
+    "eslint": "latest",
+    "eslint-config-prettier": "latest",
+    "eslint-plugin-jest": "latest",
+    "eslint-plugin-json": "latest",
+    "eslint-plugin-jsx-a11y": "latest",
+    "eslint-plugin-prettier": "latest",
+    "eslint-plugin-react": "latest",
+    "eslint-plugin-react-hooks": "latest",
+    "husky": "latest",
+    "jest": "latest",
+    "jest-environment-enzyme": "latest",
+    "jest-enzyme": "latest",
+    "jest-runner-eslint": "latest",
+    "prettier": "latest",
+    "react": "latest",
+    "react-axe": "latest",
+    "react-dom": "latest",
+    "ts-jest": "latest",
+    "typescript": "latest",
+    "typescript-styled-plugin": "latest"
+  },
+  "peerDependencies": {
+    "babel-loader": ">8.1.0",
+    "eslint": ">6.0.0",
+    "react-is": ">16.8.0"
+  },
+  "jest": {
+    "bail": true,
+    "errorOnDeprecated": true,
+    "coverageDirectory": "build/coverage",
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": -10
+      }
+    },
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.{ts,tsx}",
+      "!**/node_modules/**",
+      "!<rootDir>/src/**/stories.*"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/src/**/stories.*"
+    ],
+    "watchPlugins": [
+      "jest-runner-eslint/watch-fix"
+    ],
+    "projects": [
+      {
+        "displayName": "Jest + Enzyme",
+        "preset": "ts-jest/presets/js-with-babel",
+        "testMatch": [
+          "<rootDir>/src/**/*.test.*",
+          "!<rootDir>/**/node_modules/**"
+        ],
+        "globals": {
+          "ts-jest": {
+            "isolatedModules": true,
+            "babelConfig": {
+              "presets": [
+                "next/babel"
+              ],
+              "plugins": [
+                "@babel/plugin-transform-react-jsx"
+              ]
+            }
+          }
+        },
+        "moduleNameMapper": {
+          "^@src/(.*)$": "<rootDir>/src/$1",
+          "^@pages/(.*)$": "<rootDir>/pages/$1"
+        },
+        "setupFilesAfterEnv": [
+          "jest-enzyme"
+        ],
+        "testEnvironment": "enzyme",
+        "snapshotSerializers": [
+          "enzyme-to-json/serializer"
+        ]
+      },
+      {
+        "runner": "jest-runner-eslint",
+        "displayName": "ESLint",
+        "testMatch": [
+          "<rootDir>/src/**/*.{ts,tsx}",
+          "!<rootDir>/**/node_modules/**"
+        ]
+      }
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": true
+    },
+    "extends": [
+      "prettier",
+      "plugin:prettier/recommended",
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:jest/recommended",
+      "plugin:jest/style",
+      "plugin:react/recommended",
+      "plugin:jsx-a11y/recommended",
+      "plugin:react-hooks/recommended"
+    ],
+    "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 11,
+      "sourceType": "module",
+      "warnOnUnsupportedTypeScriptVersion": false
+    },
+    "plugins": [
+      "react",
+      "prettier",
+      "@typescript-eslint",
+      "jsx-a11y",
+      "react-hooks"
+    ],
+    "settings": {
+      "react": {
+        "version": "999.999.999",
+        "propWrapperFunctions": [
+          "forbidExtraProps",
+          {
+            "property": "freeze",
+            "object": "Object"
+          },
+          {
+            "property": "assign",
+            "object": "Object"
+          }
+        ]
+      }
+    },
+    "rules": {
+      "indent": [
+        "error",
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "quotes": [
+        "error",
+        "double"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "react/react-in-jsx-scope": "off"
+    }
+  }
+}
